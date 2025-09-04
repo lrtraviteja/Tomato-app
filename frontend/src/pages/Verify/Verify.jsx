@@ -14,11 +14,18 @@ const Verify = () => {
 
     const verifyPayment = async () => {
         const response = await axios.post(`${url}/api/order/verify`, {success, orderId})
-        console.log(response.data)
-        if (response.data.success) {
-            navigate("/myorders")
-        }
-        else{
+        try {
+            const response = await axios.post(`${url}/api/order/verify`, {success, orderId})
+            console.log('Verify API response:', response.data)
+            if (response.data.success) {
+                navigate("/myorders")
+            } else {
+                console.error('Payment not successful:', response.data)
+                navigate("/")
+            }
+        } catch (error) {
+            console.error('Error verifying payment:', error)
+            alert('Error verifying payment. Check console for details.')
             navigate("/")
         }
     }   
