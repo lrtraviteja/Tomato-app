@@ -37,7 +37,7 @@ const Verify = () => {
   return (
     <div className="verify">
         <div className="spinner">
-            
+            {console.log("At Verify Page")}
         </div>
     </div>
   )
